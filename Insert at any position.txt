@@ -1,0 +1,61 @@
+#include <bits/stdc++.h>
+using namespace std;
+class node
+{
+	public:
+	int data;
+	node *next;
+};
+node *head=new node();
+void push(node *n,int p,int d)
+{
+	node *m=new node();
+	m->data=d;
+	if(p==1)
+	{
+		m->next=n;
+		head=m;
+	}
+	else
+	{
+		for(int i=0;i<p-2;i++)
+		n=n->next;
+		m->next=n->next;
+		n->next=m;
+	}
+}
+void print(node *n)
+{
+	if(n!=NULL)
+	{
+		cout<<n->data<<" ";
+		print(n->next);
+	}
+}
+void pull(node *n,int d)
+{
+	node *m=new node();
+	m->data=d;
+	m->next=NULL;
+	head=m;
+}
+int main() {
+	head=NULL;
+	pull(head,5);
+	print(head);
+	cout<<"\n";
+	push(head,1,8);
+	print(head);
+	cout<<"\n";
+	push(head,1,4);
+	print(head);
+	cout<<"\n";
+	push(head,2,0);
+	print(head);
+	return 0;
+}
+OUTPUT:
+5 
+8 5 
+4 8 5 
+4 0 8 5 
