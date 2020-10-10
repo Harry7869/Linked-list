@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+class node
+{
+	public:
+	int data;
+	node *next;
+};
+node *head=new node();
+void pull(node *n,int d)
+{
+	node *m=new node();
+	m->data=d;
+	if(n==NULL)
+	head=m;
+	else
+	{
+		while(n->next!=NULL)
+		n=n->next;
+		n->next=m;
+	}
+	m->next=NULL;
+}
+void printrev(node *n)
+{
+	if(n!=NULL)
+	{
+		printrev(n->next);
+		cout<<n->data<<" ";
+	}
+}
+void print(node *n)
+{
+	if(n!=NULL)
+	{
+		cout<<n->data<<" ";
+		print(n->next);
+	}
+}
+int main() {
+	head=NULL;
+	pull(head,10);
+	pull(head,20);
+	pull(head,49);
+	pull(head,80);
+	print(head);
+	cout<<"\n";
+	printrev(head);
+	return 0;
+}
