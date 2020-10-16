@@ -1,0 +1,29 @@
+void removeLoop(Node* head)
+{
+    Node* tortoise=head;
+    Node* hare=head;
+    bool f=false;
+    while(tortoise!=NULL&& hare!=NULL && hare->next!=NULL)
+    {
+        hare=hare->next->next;
+        tortoise=tortoise->next;
+        if(hare==tortoise)
+        {
+            f=true;
+            break;
+        }
+    }
+    if(f)
+    {
+        tortoise=head;
+        while(tortoise->next!=hare->next)
+        {
+            tortoise=tortoise->next;
+            hare=hare->next;
+        }
+        hare->next=NULL;
+    }
+}
+
+// Time - O(n)
+// Space - O(1)
